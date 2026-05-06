@@ -4,26 +4,11 @@
 
 系统包含 3 类 Agent + 1 个审查引擎，全部由 Orchestrator（主会话）调度。
 
-```
-┌─────────────────────────────────────────────┐
-│        Orchestrator Agent（主会话）           │
-│  角色：项目经理 + 系统调度员                   │
-│  运行在：Claude Code 主会话                    │
-└──────┬──────────────┬──────────────┬─────────┘
-       │              │              │
-       ▼              ▼              ▼
-  ┌──────────┐  ┌──────────┐  ┌────────────┐
-  │ 创作 Agent│  │ 品质 Agent│  │ 市场 Agent │
-  └──────────┘  └──────────┘  └────────────┘
-                       │
-                       ▼
-              ┌────────────────┐
-              │ DeepSeek API   │
-              │ (审查引擎)      │
-              └────────────────┘
-```
-
----
+- **Orchestrator Agent（主会话）** — 项目经理 + 系统调度员，运行在 Claude Code 主会话
+  - → **创作 Agent**（Sub-agent）
+  - → **品质 Agent**（Sub-agent）
+  - → **市场 Agent**（Sub-agent）
+    - → **DeepSeek API**（审查引擎）
 
 ## Orchestrator Agent（常驻主会话）
 
@@ -43,69 +28,54 @@
 - 写作阶段：你给出指令，我执行并汇报结果
 - 写作中遇到需要你决策的问题，用清单/选择形式提问，不要大段论述
 
----
-
 ## 创作 Agent（Sub-agent 形式启动）
 
 **角色定位**：作家。负责从零到一的创意产出。
 
 **Sub-Agent 划分**：
 
-### World Architect
-- 关联 Skill: `world-building`
-- 启动场景: 新书世界观构建
-- 核心产出: `output/bible/*.md`
-- 工作模式: 问答式迭代 → 输出结构化文档
+- **World Architect** — Skill: `world-building`
+  - 启动场景: 新书世界观构建
+  - 核心产出: `output/bible/*.md`
+  - 工作模式: 问答式迭代 → 输出结构化文档
 
-### Character Designer
-- 关联 Skill: `character-design`
-- 启动场景: 角色设计阶段
-- 核心产出: `output/characters/*.md`
-- 工作模式: 模板填充 → 扩展润色 → 关系图谱
+- **Character Designer** — Skill: `character-design`
+  - 启动场景: 角色设计阶段
+  - 核心产出: `output/characters/*.md`
+  - 工作模式: 模板填充 → 扩展润色 → 关系图谱
 
-### Plot Planner
-- 关联 Skill: `outline-planner`
-- 启动场景: 大纲规划阶段
-- 核心产出: `output/outline/*.md`
-- 工作模式: 粗纲 → 细纲 → 锁定
+- **Plot Planner** — Skill: `outline-planner`
+  - 启动场景: 大纲规划阶段
+  - 核心产出: `output/outline/*.md`
+  - 工作模式: 粗纲 → 细纲 → 锁定
 
-### Writer
-- 关联 Skill: `chapter-writing`
-- 启动场景: 正文写作阶段
-- 核心产出: `output/chapters/*.md`
-- 工作模式: 逐章输出，每章自动更新摘要
-
----
+- **Writer** — Skill: `chapter-writing`
+  - 启动场景: 正文写作阶段
+  - 核心产出: `output/chapters/*.md`
+  - 工作模式: 逐章输出，每章自动更新摘要
 
 ## 品质 Agent（Sub-agent 形式启动）
 
 **角色定位**：编辑 + 校对。负责质量把控。
 
-### Editor
-- 关联 Skill: `editor`
-- 启动场景: 成稿批量润色、节奏检查
-- 核心产出: 修改后章节 + 修改记录
-- 工作模式: 逐章或批量处理
+- **Editor** — Skill: `editor`
+  - 启动场景: 成稿批量润色、节奏检查
+  - 核心产出: 修改后章节 + 修改记录
+  - 工作模式: 逐章或批量处理
 
-### Consistency Checker
-- 关联 Skill: `consistency-check`
-- 启动场景: 定期间隔（每10章、每卷完成时）
-- 核心产出: 一致性报告
-- 工作模式: 调用 DeepSeek API 或手动方式
-
----
+- **Consistency Checker** — Skill: `consistency-check`
+  - 启动场景: 定期间隔（每10章、每卷完成时）
+  - 核心产出: 一致性报告
+  - 工作模式: 调用 DeepSeek API 或手动方式
 
 ## 市场 Agent（Sub-agent 形式启动）
 
 **角色定位**：数据分析师。负责市场对标。
 
-### Market Analyst
-- 关联 Skill: `market-analysis`
-- 启动场景: 项目启动时、上架前、更新调整时
-- 核心产出: 分析报告 + 参数模板
-- 工作模式: 抽样分析 → 建模 → 对标
-
----
+- **Market Analyst** — Skill: `market-analysis`
+  - 启动场景: 项目启动时、上架前、更新调整时
+  - 核心产出: 分析报告 + 参数模板
+  - 工作模式: 抽样分析 → 建模 → 对标
 
 ## DeepSeek 审查引擎（API / 手动）
 

@@ -18,31 +18,25 @@ Phase 5 — 质量审查（周期性执行）
 ## 执行流程
 
 ### 方式 A：API 自动调用（推荐）
-
-```
-① 收集所有需要审查的文件内容
-② 按以下结构组装 Prompt：
-   [系统指令] → 你是一个小说一致性审查专家...
-   [世界观设定] → bible/*.md 的内容
-   [角色档案] → characters/*.md 的内容
-   [伏笔规划] → plot_threads.md 的内容
-   [正文全文] → 所有已写章节
-③ 调用 DeepSeek API
-④ 解析返回的审查报告
-⑤ 写入 meta/consistency_reports/
-```
+- ① 收集所有需要审查的文件内容
+- ② 按以下结构组装 Prompt：
+  - [系统指令] → 你是一个小说一致性审查专家...
+  - [世界观设定] → bible/*.md 的内容
+  - [角色档案] → characters/*.md 的内容
+  - [伏笔规划] → plot_threads.md 的内容
+  - [正文全文] → 所有已写章节
+- ③ 调用 DeepSeek API
+- ④ 解析返回的审查报告
+- ⑤ 写入 meta/consistency_reports/
 
 ### 方式 B：手动粘贴（备用）
 如果 API 未就绪，系统会生成一个"审查用文本包"，你可以复制到 DeepSeek 界面：
-
-```
-① 系统生成 `meta/consistency_reports/_review_package.md`
-   - 包含所有上下文 + 审查指令
-   - 格式为"复制即用"状态
-② 你将其粘贴到 DeepSeek
-③ 将 DeepSeek 的回复粘贴回来
-④ 我解析并结构化输出
-```
+- ① 系统生成 `meta/consistency_reports/_review_package.md`
+  - 包含所有上下文 + 审查指令
+  - 格式为"复制即用"状态
+- ② 你将其粘贴到 DeepSeek
+- ③ 将 DeepSeek 的回复粘贴回来
+- ④ 我解析并结构化输出
 
 ## 审查 Prompt 模板
 
