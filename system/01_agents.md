@@ -22,6 +22,7 @@
 5. 维护 meta/chapter_summaries.md（上下文索引）
 6. 决定何时调用 DeepSeek API
 7. 向你汇报进度、提出问题、请求决策
+8. 写作前确保参考 templates/tomato_system_market_essence.md（市场标准）
 
 **运行规则**：
 - 架构阶段：展开对话式讨论，与你一起打磨方案
@@ -38,21 +39,25 @@
   - 启动场景: 新书世界观构建
   - 核心产出: `output/bible/*.md`
   - 工作模式: 问答式迭代 → 输出结构化文档
+  - 番茄注意: 世界观一句话说清楚，不在开篇堆设定
 
 - **Character Designer** — Skill: `character-design`
   - 启动场景: 角色设计阶段
   - 核心产出: `output/characters/*.md`
   - 工作模式: 模板填充 → 扩展润色 → 关系图谱
+  - 番茄注意: 主角动机简单直接，反派坏得明确
 
 - **Plot Planner** — Skill: `outline-planner`
   - 启动场景: 大纲规划阶段
   - 核心产出: `output/outline/*.md`
   - 工作模式: 粗纲 → 细纲 → 锁定
+  - 番茄注意: 每3章标注爽点，每章标注钩子类型
 
 - **Writer** — Skill: `chapter-writing`
   - 启动场景: 正文写作阶段
   - 核心产出: `output/chapters/*.md`
   - 工作模式: 逐章输出，每章自动更新摘要
+  - 番茄注意: 2000-3000字/章，每段≤3句，每章必留钩子
 
 ## 品质 Agent（Sub-agent 形式启动）
 
@@ -75,7 +80,7 @@
 - **Market Analyst** — Skill: `market-analysis`
   - 启动场景: 项目启动时、上架前、更新调整时
   - 核心产出: 分析报告 + 参数模板
-  - 工作模式: 抽样分析 → 建模 → 对标
+  - 工作模式: 基于内置市场数据（templates/tomato_system_market_essence.md）+ 你提供的对标书单
 
 ## DeepSeek 审查引擎（API / 手动）
 
