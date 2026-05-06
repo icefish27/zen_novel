@@ -1,0 +1,62 @@
+# novel.config.yaml
+# 小说项目配置 — 在 checklist 填写完毕后由系统生成
+
+# ============ 基本信息 ============
+title: ""                      # 书名（暂定）
+platform_primary: "番茄"        # 首发平台
+platform_secondary: "起点"      # 后续扩展
+genre: ""                      # 品类
+subgenre: ""                   # 子品类
+target_words: 1000000          # 目标字数
+target_chapters: 400           # 目标章节
+update_pace: "日更"             # 更新节奏
+
+# ============ 核心定位 ============
+core_concept: ""               # 一句话梗概
+unique_selling_points: []      # 卖点列表
+emotional_tone: "爽文"          # 情绪基调
+reference_works: []            # 对标作品
+
+# ============ 主角 ============
+protagonist:
+  name: ""                     # 姓名
+  archetype: ""                # 开局类型
+  initial_identity: ""         # 初始身份
+  initial_situation: ""        # 起始处境
+  personality: ""              # 性格基调
+  cheat_power: ""              # 金手指
+  growth_direction: ""         # 成长方向
+  romance_type: ""             # 感情线类型
+
+# ============ 世界观 ============
+world:
+  type: ""                     # 世界类型
+  power_system:                # 力量体系
+    exists: true
+    name: ""
+    tiered: true
+    unique_feature: ""
+
+# ============ 节奏参数 ============
+pacing:
+  opening: "黄金三章"           # 开局风格
+  climax_interval: 5           # 小高潮间隔（章）
+  major_climax_interval: 20    # 大高潮间隔（章）
+  chapter_words: 2500          # 每章目标字数
+  paragraph_style: "short"     # 段落风格
+  hook_preference: "mixed"     # 钩子偏好
+
+# ============ 文笔 ============
+writing_style:
+  prose: "简洁直白"             # 文笔风格
+  dialogue_ratio: "high"       # 对话占比
+  internal_monologue: "low"    # 心理描写
+  description: "minimal"       # 环境描写
+
+# ============ 进度追踪（自动更新）============
+progress:
+  current_phase: 0             # 当前 Phase（0-6）
+  chapters_written: 0
+  words_written: 0
+  last_consistency_check: null
+  current_status: "架构搭建中"
